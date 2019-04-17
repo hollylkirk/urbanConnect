@@ -38,7 +38,7 @@ There are three parameters to investigate: the distance threshold, the width at 
    In Phase I of the project distance **x** varied between 350-1500m for different species groups. I suggest we try varying by 50m increments from 0-2000m, although we can initally run this analysis on a subset of values to see how long this will take. It might also be interesting to see if there is a distance at which we no longer see an improvement in the connectivity index value.
 
 - *Road barrier width*
-   To investigate this parameter, the input road layer needs to be filtered by road segment width before creating the "barrier layer". Variation here is dictated by the range in road widths within the City (approx. 3-15m), but we can also investigate the effect of buffering the edge of the road layer too. This was initially set to 7.5m for all roads, in-line with the methods used for CBI#2(improved) in Deslauriers et. al. (2017). Possibly something to consider for the paper, but I think of less interest to the CoM as what we are aiming to do here is formalise the how they go about defining what is a "barrier".
+   To investigate this parameter, the input road layer needs to be filtered by road segment width before creating the "barrier layer". Variation here is dictated by the range in road widths within the City (approx. 3-15m), but we can also investigate the effect of buffering the edge of the road layer too. This was initially set to 7.5m for all roads, in-line with the methods used for CBI#2(improved) in Deslauriers et. al. (2017). Possibly something to consider for the paper, but I think of less interest to the CoM as what we are aiming to do here is formalise the how they go about defining what is a "barrier". However, this buffering does have implications for whether we consider road-side vegetation as "habitat".
    To implement this we can make a range of labelled barrier layers which can be selected automatically in R using the appropriate function.
 
 - *Road traffic volume*
@@ -46,7 +46,7 @@ There are three parameters to investigate: the distance threshold, the width at 
   
   
 ###### Some things to consider:
-It would make sense to test the interaction between varying road width and threshold distance, which is something we can definitely do using a combination of the methods above. I suggest we start with holding one parameter constant first before varying more than one. 
+It would make sense to test the interaction between varying road width and threshold distance, which is something we can definitely do using a combination of the methods above. I suggest we start with holding one parameter constant first before varying more than one. When combining road width with traffic volume we could classify traffic volume as high or low. 
 
 Once we have collected the range of connectivity index values we can try to answer the following questions: Which of the input variables is more influential? If one variable is more important/influential how can we help councils decide what value to use? We can also look at how "connected" habitat area changes, mean patch sizes and the relationship between these and the connectivity index. This will help to clarify what the connectivity index "means". 
 
@@ -55,10 +55,12 @@ We probably don't need to do this sensivity analysis for all of our different an
 
 
 ## 2. Prioritisation steps
-To prioritise which road segments should be targetted for "greening action" there are two different methods we can use. 
+To prioritise which road segments should be targetted for "greening action" there are two different methods we can use. The secon method relise on us getting information from the CoM about exactly what type of "greening actions" they are capable of implementing. We could also ask them to identify any roads where they would consider this to be  
 
 - *Road segment removal*
-   To simulate the removal of the barrier at each road segment we can remove that segment and then run the connectivity calculation. We should then be able to quantify the 
+   To simulate the removal of the "barrier" at each road segment we can remove that segment and then run the connectivity calculation. We should then be able to quantify the change in connectivity for each road segment, for each animal group. Those which show the greatest improvement could be considered priorities
+   
+- *Model "greening action"*
 
 
 
