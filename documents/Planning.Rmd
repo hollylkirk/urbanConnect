@@ -15,7 +15,7 @@ Following our proposal to the CoM, the main aims for the next section of the pro
 A quick reminder, the parameters of the connectivity index equation are all measures of area - the **sum(areaN^2)** for each connected patch divided by the **total overall area** of habitat. The index is essentially a quantification of the how fragmented the habitat is within the city.  
 Before the step-by-step method for identifying which areas are "connected", all the available "habitat" needs to be identified and collated into one layer (we have already done this for each of our seven animal groups). The definitions of what is classed has "habitat" will not vary from the definitions stated in phase I. However, as we undertake the next phase, the definition of what is a "barrier" will vary, as will the distance at which two patches are considered to be "connected". 
 
-*Implementation in R*
+###### Implementation in R*
 The sections below are an attempt to detail the main steps for achieving the two aims. However, an intial phase will involve implementation of the whole step-by-step methodology in R, by writing a collection of functions for each step. This will allow the process of varying distance and barrier definitions to be automated. These are the general steps for this process:
 - Functions to load GIS layer data (habitat, road barrier and building barrier layers)
 - Function to buffer habitat layer by **x** threshold distance
@@ -26,17 +26,39 @@ The sections below are an attempt to detail the main steps for achieving the two
 - Function to calculate the area of each collection of connected patches
 - Function to run the connectivity calculation on the final output
 
-The main problem that may be encountered here will be getting the Connectivity Index numbers derived in R to match those calculated using QGIS/ArcGIS. Some small discrepancy is to be expected given that there are differences in the way GIS software and R execute spatial tasks. Hopefully the outputs will not be too different.
+The main problem that may be encountered here will be getting the Connectivity Index numbers derived in R to match those calculated in Phase I using QGIS/ArcGIS. Some small discrepancy is to be expected given that there are differences in the way GIS software and R execute spatial tasks. Hopefully the outputs will not be too different.
 
 
 
-### 1. Sensitivity/uncertainty analysis
+## 1. Sensitivity analysis
+There are three parameters to investigate: the distance threshold, the width at which a road is considered a barrier and the traffic volume at which a road is considered a barrier (this last one is a new parameter, requested by CoM). The methodology for determining the sensitivity/uncertainty of the connectivity index to these changes will be determined by varying one parameter respectively:
+
+- *Threshold distance*
+   Habitat patches are buffered by distance **x** to determine if they are connected. This takes place as a parameter within a function (see above) so will be fairly straight forward to implement. We simply collect a range of connectivity measurements and examine the variance.
+   In Phase I of the project distance **x** varied between 350-1500m for different species groups. I suggest we try varying by 50m increments from 0-2000m, although we can initally run this analysis on a subset of values to see how long this will take. It might also be interesting to see if there is a distance at which we no longer see an improvement in the connectivity index value.
+
+- *Road barrier width*
+   To investigate this parameter, the input road layer needs to be filtered by road segment width before creating the "barrier layer". Variation here is dictated by the range in road widths within the City (approx. 3-15m), but we can also investigate the effect of buffering the edge of the road layer too. This was initially set to 7.5m for all roads, in-line with the methods used for CBI#2(improved) in Deslauriers et. al. (2017). Possibly something to consider for the paper, but I think of less interest to the CoM as what we are aiming to do here is formalise the how they go about defining what is a "barrier".
+   To implement this we can make a range of labelled barrier layers which can be selected automatically in R using the appropriate function.
+
+- *Road traffic volume*
+  Again, this is fairly straightforward, we can classify road segment according to traffic volume, hold road width constant and create a range of labelled road layers. Then follow a similar protocol to above.
+  
+  
+###### Some things to consider:
+It would make sense to test the interaction between varying road width and threshold distance, which is something we can definitely do using a combination of the methods above. I suggest we start with holding one parameter constant first before varying more than one. 
+
+Once we have collected the range of connectivity index values we can try to answer the following questions: Which of the input variables is more influential? If one variable is more important/influential how can we help councils decide what value to use? We can also look at how "connected" habitat area changes, mean patch sizes and the relationship between these and the connectivity index. This will help to clarify what the connectivity index "means". 
+
+We probably don't need to do this sensivity analysis for all of our different animal groups. My suggestion would be that we perhaps start with just two, the one with the lowest habitat area (Amphibians) and one with the highest (Tree-hollow using birds, or Woodland birds). Or we do it just for "all vegetation" within the CoM, which would be comparable with the basic CBI#2(improved) measure. 
 
 
 
+## 2. Prioritisation steps
+To prioritise which road segments should be targetted for "greening action" there are two different methods we can use. 
 
-### 2. Prioritisation steps
-
+- *Road segment removal*
+   To simulate the removal of the barrier at each road segment we can remove that segment and then run the connectivity calculation. We should then be able to quantify the 
 
 
 
