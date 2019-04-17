@@ -10,13 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Planning notes for Connectivity Phase II
 
-Following our proposal to the CoM, the main aims for the next section of the project are to 1) test the sensitivity of the connectivity index model to different connectivity thresholds and barrier definitions and 2) prioritise which road segments should be targeted for **greening action** in order to make the greatest positive impact on ecological connectivity. For the prioritisation activity, this should be repeated for each of the seven animal groups we used during the first phase of the project. 
+Following our proposal to the CoM, the main aims for the next section of the project are to 1) test the sensitivity of the connectivity index model to different connectivity thresholds and barrier definitions and 2) prioritise which road segments should be targeted for "greening action" in order to make the greatest positive impact on ecological connectivity. The prioritisation activity should be repeated for each of the seven animal groups we used during the first phase of the project. 
 
-A quick reminder, the parameters of connectivity index equation are all measures of area - the sum of area^2 for each connected patch divided by the total overall area of habitat. It essentially is a quantification of the how fragmented the habitat is within the city.  
-Before the step-by-step method for identifying which areas are "connected", all the available "habitat" needs to be identified and collated into one layer (we have already done this for each of our seven animal groups). The definition of what is classed has "habitat" will not vary as we undertake the next phase, however the definition of what is a "barrier" will, as will the distance at which two patches are considered to be "connected". 
+A quick reminder, the parameters of the connectivity index equation are all measures of area - the **sum(areaN^2)** for each connected patch divided by the **total overall area** of habitat. The index is essentially a quantification of the how fragmented the habitat is within the city.  
+Before the step-by-step method for identifying which areas are "connected", all the available "habitat" needs to be identified and collated into one layer (we have already done this for each of our seven animal groups). The definitions of what is classed has "habitat" will not vary from the definitions stated in phase I. However, as we undertake the next phase, the definition of what is a "barrier" will vary, as will the distance at which two patches are considered to be "connected". 
 
 *Implementation in R*
-The sections below are an attempt to detail the main steps for achieving the two aims. However, an intial phase will involve implementation of the whole step-by-step methodology in R, by writing a set of functions for each step. This will allow the process of varying distance and barrier definitions to be automated. These are the general steps for this process:
+The sections below are an attempt to detail the main steps for achieving the two aims. However, an intial phase will involve implementation of the whole step-by-step methodology in R, by writing a collection of functions for each step. This will allow the process of varying distance and barrier definitions to be automated. These are the general steps for this process:
 - Functions to load GIS layer data (habitat, road barrier and building barrier layers)
 - Function to buffer habitat layer by **x** threshold distance
 - Function to combine and dissolve barrier layer
@@ -26,7 +26,7 @@ The sections below are an attempt to detail the main steps for achieving the two
 - Function to calculate the area of each collection of connected patches
 - Function to run the connectivity calculation on the final output
 
-The main problem that may be encountered here will be getting the Connectivity Index numbers derived in R to be similar to those calculated using QGIS. Some small discrepancy is to be expected given that the way that GIS software and R do some of these steps will be a little different "under the hood". Hopefully the outputs will not be too different!
+The main problem that may be encountered here will be getting the Connectivity Index numbers derived in R to match those calculated using QGIS/ArcGIS. Some small discrepancy is to be expected given that there are differences in the way GIS software and R execute spatial tasks. Hopefully the outputs will not be too different.
 
 
 
@@ -36,6 +36,9 @@ The main problem that may be encountered here will be getting the Connectivity I
 
 
 ### 2. Prioritisation steps
+
+
+
 
 
 
