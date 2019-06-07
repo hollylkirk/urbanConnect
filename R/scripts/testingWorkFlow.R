@@ -6,6 +6,7 @@ library(here)
 library(sp)
 library(sf)
 library(rgeos)
+library(raster)
 # library(tidyverse)
 
 # where are the functions
