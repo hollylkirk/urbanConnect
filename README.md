@@ -3,7 +3,7 @@ Reproducible workflow in R for measuring **ecological connectivity** in urban ar
 
 Here you will find a collection of R scripts, functions and tutorials for calculating an ecological connectivity index based on "effective mesh size", a geometric measure of connectivity developed by [Jochen Jaeger (2000)](https://doi.org/10.1023/A:1008129329289), see also [Spanowicz & Jaeger 2019](https://doi.org/10.1007/s10980-019-00881-0). This method has also been used by [(Deslauriers et al. 2017)](https://www.sciencedirect.com/science/article/pii/S1470160X17300912) in the development of the City Biodiversity Index #2.
 
-Here we present a set of R functions that can be used to compute effective mesh size in urban areas. These functions all require installation of the `sf` package (more information about `sf` [here](https://r-spatial.github.io/sf/)). The functions were
+Here we present a set of R functions that can be used to compute effective mesh size in urban areas. These functions all require installation of the `sf` package (more information about `sf` [here](https://r-spatial.github.io/sf/)). The functions were developed using `sf` version 0.9.3. 
 
 The workflow requires three main data inputs:
 * A spatial polygon file that represents available _habitat_
