@@ -12,6 +12,9 @@ The workflow requires three main data inputs:
 
 For an example of how this method has been applied in a real-life urban planning scenario in the City of Melbourne you can download [this report](https://nespurban.edu.au/wp-content/uploads/2021/02/Linking-nature-in-the-city-Part-2.pdf).
 
+## How to get started
+All the main functions for calculating effective mesh size can be found in the `connectFunctions` file in the R folder
 
+A demonstration workflow with a tutorial coming soon!
 
 ![GIS layers around Fitzroy Gardens, Melbourne, Australia](images/ZoomedInFitzroyGardens.png)
