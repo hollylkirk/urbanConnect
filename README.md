@@ -12,6 +12,8 @@ The workflow requires three main data inputs:
 
 For an example of how this method has been applied in a real-life urban planning scenario in the City of Melbourne you can download [this report](https://nespurban.edu.au/wp-content/uploads/2021/02/Linking-nature-in-the-city-Part-2.pdf).
 
+For scripts relating to the "Nature-based solutions for urban biodiversity: spatial targeting of retrofits can multiply ecological connectivity benefits" see the folder [here] (https://github.com/hollylkirk/urbanConnect/tree/master/R/parkingReallocationScenarioAnalysis). You can follow this workflow for an example of how to calculate the existing connectivity in a landscape and how to measure change in connectivity under different design scenarios.
+
 ## How to get started
 All the main functions for calculating effective mesh size can be found in the `connectFunctions` file in the R folder
 
