@@ -60,10 +60,31 @@ remaining_patches <- function(habitat, barrier) {
 }
 
 
+# clean membership function to account for when some fragments appear in no buffered areas,
+# or some appear in more than one.
+clean_inter <- function(membership_vector) {
+  # check for empty vectors
+  if (length(membership_vector) == 0) {
+    membership_vector <- NA
+  }
+  
+  if (length(membership_vector) > 1){
+    membership_vector <- membership_vector[1]
+    warning("One of the fragments occurs in more than one buffered area, ",
+            "so has been assigned to the first area in the list")
+  }
+  membership_vector
+}
+
+
+
 # identify which of the remaining original habitat patches belong in which connected area
 identify_patches <- function(remaining, fragID) {
   inter <- sf::st_intersects(remaining, fragID)
-  membership <- unlist(inter)
+  # code to sanitise "inter"  (a list of vectors) to make sure any empty vectors are non-empty
+  # and make sure there are no vectors longer that 1
+  cleaned_inter <- lapply(inter, clean_inter)
+  membership <- unlist(cleaned_inter)
   habID <- sf::st_sf(geometry = remaining, cluster = membership)
   habID
 }
